@@ -3,7 +3,6 @@ import datetime
 from dateutil import parser
 
 
-
 def create_password_table():
     sql = '''
     CREATE TABLE passwords (
@@ -120,7 +119,7 @@ def create_targettypes_table():
     print(db_conn_def("create", sql=sql, table_name="targettypes"))
     types = {
         1: 'PCA',
-        2: ' ASA'
+        2: 'ASA'
     }
     for key, item in types.items():
         sql = 'INSERT INTO targettypes (targettype_id,target_type) VALUES ({b1},"{b2}")'.format(b1=key, b2=item)
@@ -242,8 +241,38 @@ def create_invervals_table():
         minutes_to_add = i * 15
         time_change = datetime.timedelta(minutes=minutes_to_add)
         new_interval = interval + time_change
-        sql = 'INSERT INTO intervals (interval_id, interval_start) VALUES ({b1}, "{b2}")'.format(b1=int_id, b2=new_interval)
+        sql = 'INSERT INTO intervals (interval_id, interval_start) VALUES ({b1}, "{b2}")'.format(b1=int_id,
+                                                                                                 b2=new_interval)
         print(db_conn_def('insert', sql=sql, table_name="intervals"))
+
+
+def create_scenario_table():
+    sql = '''
+    CREATE TABLE scenarios (
+    scenario_id INTEGER PRIMARY KEY NOT NULL, 
+    Category_id INTEGER NOT NULL, 
+    client_id INTEGER NOT NULL
+    );    
+    '''
+    print(db_conn_def('create', sql=sql, table_name='scenarios'))
+
+
+def create_category_table():
+    sql = '''
+    CREATE TABLE categories(
+    cat_id INTEGER PRIMARY KEY NOT NULL,
+    category TEXT NOT NULL
+    );'''
+    print(db_conn_def('create', sql=sql, table_name='categories'))
+
+
+def create_client_tables():
+    sql = '''
+    CREATE TABLE clients (
+    client_id INTEGER NOT NULL, 
+    client TEXT NOT NULL
+    );
+    '''
 
 
 def create_all_tables():
@@ -271,3 +300,6 @@ def create_all_tables():
     create_intervalvol_table()
     create_weeks_table()
     create_invervals_table()
+    create_scenario_table()
+    create_client_tables()
+    create_category_table()
