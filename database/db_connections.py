@@ -32,10 +32,10 @@ def delete_query(sql, table_name):
         conn = sqlite3.connect('cc_planner.db')
         conn.execute(sql)
         conn.commit()
-        message['status'] = 'record(s) successfully deleted from {b1} table'.format(b1=table_name)
+        message['status'] = 'SUCCESSFUL - record(s) successfully deleted from {b1} table'.format(b1=table_name)
     except sqlite3.Error as error:
         conn.rollback()
-        message['status'] = 'there was a problem running the delete statement on the {b1} table. Error: {b2}'.format(b1=table_name, b2=error)
+        message['status'] = 'FAILED - there was a problem running the delete statement on the {b1} table. Error: {b2}'.format(b1=table_name, b2=error)
     finally:
         conn.close()
 
@@ -69,11 +69,11 @@ def select_query(sql, table_name):
 
     except sqlite3.Error as error:
         conn.rollback()
-        return_load['status'] = "there was an error selecting data from the {b1} table.  Error:  {b2}".format(b1=table_name, b2=error)
+        return_load['status'] = "FAILED - there was an error selecting data from the {b1} table.  Error:  {b2}".format(b1=table_name, b2=error)
 
     finally:
         conn.close()
-        return_load['status'] = "successfully selected data from the {b1} table".format(b1=table_name)
+        return_load['status'] = "SUCCESSFUL - successfully selected data from the {b1} table".format(b1=table_name)
         return_load['payload'] = return_rows
 
     return return_load
@@ -87,11 +87,11 @@ def create_db():
         conn_version = 'select sqlite_version();'
         cur.execute(conn_version)
         record = cur.fetchall()
-        message['status'] = 'Database has been created:  SQLite Database is version: ' + str(record)
+        message['status'] = 'SUCCESSFUL - Database has been created:  SQLite Database is version: ' + str(record)
         cur.close()
 
     except sqlite3.Error as error:
-        message['status'] = 'Error while connecting to the database' + error
+        message['status'] = 'FAILED - Error while connecting to the database' + error
 
     finally:
         if conn:
@@ -107,10 +107,10 @@ def create_query(sql, table_name):
         conn = sqlite3.connect('cc_planner.db')
         conn.execute(sql)
         conn.commit()
-        message['status'] = 'The ' + str(table_name) + ' has been created'
+        message['status'] = 'SUCCESSFUL - The ' + str(table_name) + ' has been created'
     except sqlite3.Error as error:
         conn.rollback()
-        message['status'] = 'The ' + str(table_name) + ' has failed. Error: ' + str(error)
+        message['status'] = 'FAILED - The ' + str(table_name) + ' has failed. Error: ' + str(error)
     finally:
         conn.close()
 
@@ -124,10 +124,10 @@ def insert_query(sql, table_name):
         cur = conn.cursor()
         cur.execute(sql)
         conn.commit()
-        message['status'] = 'The insert statement into {b1} was successful'.format(b1=table_name)
+        message['status'] = 'SUCCESSFUL - The insert statement into {b1} was successful'.format(b1=table_name)
     except sqlite3.Error as error:
         conn.rollback()
-        message['status'] = 'The insert statement into {b1} has failed. Error: {b2}'.format(b1=table_name, b2=error)
+        message['status'] = 'FAILED - The insert statement into {b1} has failed. Error: {b2}'.format(b1=table_name, b2=error)
     finally:
         conn.close()
 

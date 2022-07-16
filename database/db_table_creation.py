@@ -2,6 +2,7 @@ from .db_connections import db_conn_def
 import datetime
 from dateutil import parser
 
+status_update = []
 
 def create_password_table():
     sql = '''
@@ -11,7 +12,7 @@ def create_password_table():
     password TEXT 
     );
     '''
-    print(db_conn_def("create", sql=sql, table_name="passwords"))
+    status_update.append(db_conn_def("create", sql=sql, table_name="passwords"))
 
 
 def create_assumptions_table():
@@ -23,7 +24,7 @@ def create_assumptions_table():
     assumption TEXT NOT NULL
     );
     '''
-    print(db_conn_def("create", sql=sql, table_name="assumptions"))
+    status_update.append(db_conn_def("create", sql=sql, table_name="assumptions"))
 
 
 def create_bankholidays_table():
@@ -34,7 +35,7 @@ def create_bankholidays_table():
     bh_status INTEGER NOT NULL    
     );
     '''
-    print(db_conn_def("create", sql=sql, table_name="bankholidays"))
+    status_update.append(db_conn_def("create", sql=sql, table_name="bankholidays"))
 
 
 def create_skills_table():
@@ -46,7 +47,7 @@ def create_skills_table():
     queue_id INTEGER NOT NULL
     );
     '''
-    print(db_conn_def("create", sql=sql, table_name="skills"))
+    status_update.append(db_conn_def("create", sql=sql, table_name="skills"))
 
 
 def create_queue_table():
@@ -57,7 +58,7 @@ def create_queue_table():
     queue_name TEXT NOT NULL
     );
     '''
-    print(db_conn_def("create", sql=sql, table_name="queues"))
+    status_update.append(db_conn_def("create", sql=sql, table_name="queues"))
 
 
 def create_intraweek_table():
@@ -69,7 +70,7 @@ def create_intraweek_table():
     percent REAL NOT NULL
     );
     '''
-    print(db_conn_def("create", sql=sql, table_name="intraweek"))
+    status_update.append(db_conn_def("create", sql=sql, table_name="intraweek"))
 
 
 def create_daysofweek_table():
@@ -78,7 +79,7 @@ def create_daysofweek_table():
     day_id INTEGER PRIMARY KEY NOT NULL, 
     day TEXT NOT NULL
     );'''
-    print(db_conn_def("create", sql=sql, table_name="daysofweek"))
+    status_update.append(db_conn_def("create", sql=sql, table_name="daysofweek"))
     days = {
         1: 'monday',
         2: 'tuesday',
@@ -90,7 +91,7 @@ def create_daysofweek_table():
     }
     for key, item in days.items():
         sql = 'INSERT INTO daysofweek (day_id, day) VALUES ({b1},"{b2}")'.format(b1=key, b2=item)
-        print(db_conn_def('insert', sql=sql, table_name='daysofweek'))
+        status_update.append(db_conn_def('insert', sql=sql, table_name='daysofweek'))
 
 
 def create_targets_table():
@@ -106,7 +107,7 @@ def create_targets_table():
      perc_pca REAL NOT NULL
      );
     '''
-    print(db_conn_def("create", sql=sql, table_name="targets"))
+    status_update.append(db_conn_def("create", sql=sql, table_name="targets"))
 
 
 def create_targettypes_table():
@@ -116,14 +117,14 @@ def create_targettypes_table():
     target_type TEXT NOT NULL
     );
     '''
-    print(db_conn_def("create", sql=sql, table_name="targettypes"))
+    status_update.append(db_conn_def("create", sql=sql, table_name="targettypes"))
     types = {
         1: 'PCA',
         2: 'ASA'
     }
     for key, item in types.items():
         sql = 'INSERT INTO targettypes (targettype_id,target_type) VALUES ({b1},"{b2}")'.format(b1=key, b2=item)
-        print(db_conn_def('insert', sql=sql, table_name='targettypes'))
+        status_update.append(db_conn_def('insert', sql=sql, table_name='targettypes'))
 
 
 def create_staffdetails_table():
@@ -135,7 +136,7 @@ def create_staffdetails_table():
     working_hours REAL NOT NULL
     );
     '''
-    print(db_conn_def("create", sql=sql, table_name="staffdetails"))
+    status_update.append(db_conn_def("create", sql=sql, table_name="staffdetails"))
 
 
 def create_openhours_table():
@@ -147,7 +148,7 @@ def create_openhours_table():
     close_time TEXT NOT NULL
     );
     '''
-    print(db_conn_def("create", sql=sql, table_name="openhours"))
+    status_update.append(db_conn_def("create", sql=sql, table_name="openhours"))
 
 
 def create_daysopen_table():
@@ -159,7 +160,7 @@ def create_daysopen_table():
     open_state INTEGER NOT NULl
     );
     '''
-    print(db_conn_def("create", sql=sql, table_name="daysopen"))
+    status_update.append(db_conn_def("create", sql=sql, table_name="daysopen"))
 
 
 def create_shrinkage_table():
@@ -171,7 +172,7 @@ def create_shrinkage_table():
     percent_value REAL NOT NULL,
     shrinkage_type_id INTEGER NOT NULL
     );'''
-    print(db_conn_def('create', sql=sql, table_name='shrinkage'))
+    status_update.append(db_conn_def('create', sql=sql, table_name='shrinkage'))
 
 
 def create_shrinkagetype_table():
@@ -180,7 +181,7 @@ def create_shrinkagetype_table():
     shrinkage_type_id INTEGER PRIMARY KEY NOT NULL,
     shrinkage_type TEXT NOT NULL
     );'''
-    print(db_conn_def('create', sql=sql, table_name='shrinkagetype'))
+    status_update.append(db_conn_def('create', sql=sql, table_name='shrinkagetype'))
 
     shrink_types = {
         1: 'internal',
@@ -190,7 +191,7 @@ def create_shrinkagetype_table():
     for key, item in shrink_types.items():
         sql = 'INSERT INTO shrinkagetype (shrinkage_type_id, shrinkage_type) VALUES ({b1}, "{b2}")'.format(b1=key,
                                                                                                            b2=item)
-        print(db_conn_def('insert', sql=sql, table_name='shrinkagetype'))
+        status_update.append(db_conn_def('insert', sql=sql, table_name='shrinkagetype'))
 
 
 def create_intervalvol_table():
@@ -206,7 +207,7 @@ def create_intervalvol_table():
     total_handle_time INTEGER NOT NULL
     );
     '''
-    print(db_conn_def('create', sql=sql, table_name='intervalvol'))
+    status_update.append(db_conn_def('create', sql=sql, table_name='intervalvol'))
 
 
 def create_weeks_table():
@@ -215,7 +216,7 @@ def create_weeks_table():
     week_id INTEGER PRIMARY KEY NOT NULL, 
     week TEXT NOT NULL
     );'''
-    print(db_conn_def('create', sql=sql, table_name='weeks'))
+    status_update.append(db_conn_def('create', sql=sql, table_name='weeks'))
     id_int = 1
     for i in range(900):
         start_date = parser.parse('2021-12-27')
@@ -223,7 +224,7 @@ def create_weeks_table():
         import_date = start_date + datetime.timedelta(days=days_to_add)
         sql = ' INSERT INTO weeks (week_id,week) VALUES ({b1},"{b2}")'.format(b1=id_int, b2=import_date)
         id_int += 1
-        print(db_conn_def('insert', sql=sql, table_name='weeks'))
+        status_update.append(db_conn_def('insert', sql=sql, table_name='weeks'))
 
 
 def create_invervals_table():
@@ -233,7 +234,7 @@ def create_invervals_table():
     interval_start TEXT NOT NULL
     );
     '''
-    print(db_conn_def('create', sql=sql, table_name='intervals'))
+    status_update.append(db_conn_def('create', sql=sql, table_name='intervals'))
     # code about importing this as a CSV or should I just code it in here?  Will try code
     interval = datetime.timedelta()
     for i in range(96):
@@ -243,7 +244,7 @@ def create_invervals_table():
         new_interval = interval + time_change
         sql = 'INSERT INTO intervals (interval_id, interval_start) VALUES ({b1}, "{b2}")'.format(b1=int_id,
                                                                                                  b2=new_interval)
-        print(db_conn_def('insert', sql=sql, table_name="intervals"))
+        status_update.append(db_conn_def('insert', sql=sql, table_name="intervals"))
 
 
 def create_scenario_table():
@@ -254,7 +255,7 @@ def create_scenario_table():
     client_id INTEGER NOT NULL
     );    
     '''
-    print(db_conn_def('create', sql=sql, table_name='scenarios'))
+    status_update.append(db_conn_def('create', sql=sql, table_name='scenarios'))
 
 
 def create_category_table():
@@ -263,7 +264,7 @@ def create_category_table():
     cat_id INTEGER PRIMARY KEY NOT NULL,
     category TEXT NOT NULL
     );'''
-    print(db_conn_def('create', sql=sql, table_name='categories'))
+    status_update.append(db_conn_def('create', sql=sql, table_name='categories'))
 
 
 def create_client_tables():
@@ -277,7 +278,7 @@ def create_client_tables():
 
 def create_all_tables():
     # make sure database is there
-    print(db_conn_def("create database"))
+    status_update.append(db_conn_def("create database"))
 
     # Now we create each of the tables below.
     # There may be a better way to do this but this is how I know to do it
@@ -303,3 +304,5 @@ def create_all_tables():
     create_scenario_table()
     create_client_tables()
     create_category_table()
+
+    return status_update

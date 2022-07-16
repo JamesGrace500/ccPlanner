@@ -1,76 +1,52 @@
-# GUI imports
-from tkinter import *
-import customtkinter
-import datetime
+# gui imports
 
-import database.db_table_creation as dtc
+import sys
+import PyQt5
+from PyQt5 import QtWidgets, uic, QtCore
+from PyQt5.QtWidgets import  QApplication, QMainWindow
 
-customtkinter.set_appearance_mode("dark")
-customtkinter.set_default_color_theme('green')
+# page imports
+from uibackends.CreateDatabaseScreen import CreateDatabaseWindow
+from uibackends.AboutScreen import AboutScreen
 
-date = datetime.datetime.now()
-
-root = customtkinter.CTk()
-root.title('ccPlanner')
-root.geometry("1400x950+350+200")
-root.resizable(True, True)
-
-frame = customtkinter.CTkFrame(master=root,
-                               width=200,
-                               height=200,
-                               corner_radius=10)
-frame.pack(padx=20, pady=20, sticky="nsew")
+# functionality imports
 
 
-def initalise_db():
-    dtc.create_all_tables()
+# The below two if statements make the GUI work for high res screens, absolute life saver
+if hasattr(QtCore.Qt, 'AA_EnableHighDpiScaling'):
+    PyQt5.QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
+
+if hasattr(QtCore.Qt, 'AA_UseHighDpiPixmaps'):
+    PyQt5.QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
 
 
-menubar = Menu(root)
-root.config(menu=menubar)
+class LandingWindow(QMainWindow):
 
-# create the file_menu
-file_menu = Menu(
-    menubar,
-    tearoff=0
-)
+    def __init__(self):
+        super(LandingWindow, self).__init__()
+        self.w = None
+        uic.loadUi('ui/MainWindow.ui', self)  # Load the PyQt5 UI file
+        self.actionCreate.triggered.connect(self.showCreateDatabase)
+        self.actionAbout.triggered.connect(self.showAbout)
 
-# add menu items to the File menu
-file_menu.add_command(label='New')
-file_menu.add_command(label='Open...')
-file_menu.add_command(label='Create Database...')
-file_menu.add_separator()
+    def showCreateDatabase(self):
+        self.w = CreateDatabaseWindow(pagetoshow=landingwindow)
+        self.w.show()
+        self.hide()
 
-# add a submenu
-sub_menu = Menu(file_menu, tearoff=0)
-sub_menu.add_command(label='Keyboard Shortcuts')
-sub_menu.add_command(label='Color Themes')
+    def showAbout(self):
+        self.w = AboutScreen(pagetoshow=landingwindow)
+        self.w.show()
+        self.hide()
 
-# add the File menu to the menubar
-file_menu.add_cascade(
-    label="Preferences",
-    menu=sub_menu
-)
+    def closeEvent(self, event):
+        print('close event fired')
+        sys.exit(0)
 
-menubar.add_cascade(
-    label="File",
-    menu=file_menu,
-    underline=0
-)
-# create the Help menu
-help_menu = Menu(
-    menubar,
-    tearoff=0
-)
 
-help_menu.add_command(label='Welcome')
-help_menu.add_command(label='About...')
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    landingwindow = LandingWindow()
+    landingwindow.show()
+    sys.exit(app.exec_())
 
-# add the Help menu to the menubar
-menubar.add_cascade(
-    label="Help",
-    menu=help_menu,
-    underline=0
-)
-
-root.mainloop()
