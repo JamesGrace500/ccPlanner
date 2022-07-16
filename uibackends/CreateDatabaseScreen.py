@@ -34,3 +34,5 @@ class CreateDatabaseWindow(QDialog):
                 self.processList.addItem(i[1])
 
             lst_index += 1
+        self.cancelbutton.setText('Proceed')
+        self.createbutton.setEnabled(False)
