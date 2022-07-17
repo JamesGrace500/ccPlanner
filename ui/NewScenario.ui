@@ -204,11 +204,25 @@ border:none</string>
     </property>
    </widget>
   </widget>
+  <widget class="QPushButton" name="refreshbutton">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>290</y>
+     <width>101</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Refresh</string>
+   </property>
+  </widget>
   <zorder>clientgroupbox</zorder>
   <zorder>continuebutton</zorder>
   <zorder>cancelbutton</zorder>
   <zorder>categorygroupbox</zorder>
   <zorder>scenariogroupbox</zorder>
+  <zorder>refreshbutton</zorder>
  </widget>
  <resources/>
  <connections/>

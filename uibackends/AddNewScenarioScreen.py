@@ -19,10 +19,10 @@ class AddNewScenarioWindow(QDialog):
         uic.loadUi('ui/NewScenario.ui', self)
 
         # data on load --------------------------------------------------
-        self.client_list = self.getClients()
+        self.getClients()
+        self.getCategories()
 
-        for client in self.client_list:
-            self.clientcombobox.addItem(client)
+
 
         # hold the screen you will go back to if cancel or "X" is pressed
         self.pagetoshow = pagetoshow
@@ -32,6 +32,7 @@ class AddNewScenarioWindow(QDialog):
         self.cancelbutton.clicked.connect(self.goBackPage)
         self.newclientbutton.clicked.connect(self.goToNewClient)
         self.newcategorybutton.clicked.connect(self.goToNewCategory)
+        self.refreshbutton.clicked.connect(self.refresh)
 
         # assert styles-------------------------------------------------
         self.setStyleSheet(Styles.windowbackground(self))
@@ -51,10 +52,24 @@ class AddNewScenarioWindow(QDialog):
         self.noscenariolabel.setStyleSheet(Styles.bodytext(self))
 
     # functions below -------------------------------------
+    def refresh(self):
+        self.getClients()
+        self.getCategories()
+
+    def getCategories(self):
+        self.categorycombobox.clear()
+        sql = 'SELECT DISTINCT(category) from categories'
+        catlistitems = db_conn_def('select',sql=sql, table_name='categories')
+        for category in catlistitems['payload']:
+            self.categorycombobox.addItem(category[0])
+
+
     def getClients(self):
+        self.clientcombobox.clear()
         sql = 'SELECT DISTINCT(client) from clients'
         ddlistitems = db_conn_def('select', sql=sql, table_name='clients')
-        return ddlistitems['payload']
+        for client in ddlistitems['payload']:
+            self.clientcombobox.addItem(client[0])
 
     def goToNewClient(self):
         self.w = AdditionWindow(pagetoshow=self.pagename, additiontype='client')
