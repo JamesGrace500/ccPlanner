@@ -21,6 +21,7 @@ class AddNewScenarioWindow(QDialog):
         # data on load --------------------------------------------------
         self.getClients()
         self.getCategories()
+        self.checklabel.setText('')
 
 
 
@@ -33,6 +34,7 @@ class AddNewScenarioWindow(QDialog):
         self.newclientbutton.clicked.connect(self.goToNewClient)
         self.newcategorybutton.clicked.connect(self.goToNewCategory)
         self.refreshbutton.clicked.connect(self.refresh)
+        self.continuebutton.clicked.connect(self.continueprocess)
 
         # assert styles-------------------------------------------------
         self.setStyleSheet(Styles.windowbackground(self))
@@ -50,8 +52,15 @@ class AddNewScenarioWindow(QDialog):
         self.scenariolabel.setStyleSheet(Styles.bodytext(self))
         self.scenariocombobox.setStyleSheet(Styles.combobox(self))
         self.noscenariolabel.setStyleSheet(Styles.bodytext(self))
+        self.refreshbutton.setStyleSheet(Styles.actionbutton(self))
+        self.namelabel.setStyleSheet(Styles.headingtextbold(self))
+        self.checklabel.setStyleSheet(Styles.bodytext(self))
 
     # functions below -------------------------------------
+    def continueprocess(self):
+        pass
+
+
     def refresh(self):
         self.getClients()
         self.getCategories()

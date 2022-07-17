@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>867</width>
+    <height>608</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QTabWidget" name="tabWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>50</y>
+     <width>841</width>
+     <height>541</height>
+    </rect>
+   </property>
+   <property name="currentIndex">
+    <number>0</number>
+   </property>
+   <widget class="QWidget" name="assumptiontab">
+    <attribute name="title">
+     <string>Assumptions</string>
+    </attribute>
+    <widget class="QTableView" name="assumptionstable">
+     <property name="geometry">
+      <rect>
+       <x>475</x>
+       <y>40</y>
+       <width>351</width>
+       <height>461</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="assumptionslabel">
+     <property name="geometry">
+      <rect>
+       <x>480</x>
+       <y>0</y>
+       <width>121</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Assumptions</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="voltab">
+    <attribute name="title">
+     <string>Volumes and AHTS</string>
+    </attribute>
+   </widget>
+   <widget class="QWidget" name="profiletab">
+    <attribute name="title">
+     <string>Profiles</string>
+    </attribute>
+   </widget>
+  </widget>
+  <widget class="QPushButton" name="recalcbutton">
+   <property name="geometry">
+    <rect>
+     <x>550</x>
+     <y>10</y>
+     <width>75</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Recalculate</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="refreshbutton">
+   <property name="geometry">
+    <rect>
+     <x>780</x>
+     <y>12</y>
+     <width>75</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Refresh</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="scenarionamelabel">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Scenario Name</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="exportbutton">
+   <property name="geometry">
+    <rect>
+     <x>450</x>
+     <y>10</y>
+     <width>75</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Export</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="graphbutton">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>10</y>
+     <width>101</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>pop out graph</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="importsbutton">
+   <property name="geometry">
+    <rect>
+     <x>650</x>
+     <y>10</y>
+     <width>101</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Excel Imports</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
