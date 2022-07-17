@@ -18,7 +18,7 @@
 color:white</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QListWidget" name="listWidget">
+   <widget class="QListWidget" name="scenariolist">
     <property name="geometry">
      <rect>
       <x>340</x>
@@ -41,7 +41,7 @@ color:white</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="scenarioheading">
     <property name="geometry">
      <rect>
       <x>340</x>
@@ -53,17 +53,20 @@ color:white</string>
     <property name="font">
      <font>
       <pointsize>16</pointsize>
+      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color:rgb(4,255,203);</string>
+     <string notr="true">color:rgb(4,255,203);
+font-weight:bold;
+</string>
     </property>
     <property name="text">
      <string>Select scenario below:</string>
     </property>
    </widget>
-   <widget class="QGroupBox" name="groupBox">
+   <widget class="QGroupBox" name="controlbox">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -83,18 +86,19 @@ color:white</string>
 background-color: transparent; 
 border: 1px solid white; 
 border-radius: 5px; 
-margin-top: 3ex;</string>
+
+</string>
     </property>
     <property name="title">
      <string/>
     </property>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="newbutton">
      <property name="geometry">
       <rect>
        <x>50</x>
-       <y>10</y>
+       <y>30</y>
        <width>191</width>
-       <height>101</height>
+       <height>71</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -119,13 +123,13 @@ padding: 6px;
       <string>Create New Scenario</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_2">
+    <widget class="QPushButton" name="deletebutton">
      <property name="geometry">
       <rect>
        <x>50</x>
-       <y>110</y>
+       <y>120</y>
        <width>191</width>
-       <height>101</height>
+       <height>71</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -150,13 +154,13 @@ padding: 6px;
       <string>Delete Scenarios</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_3">
+    <widget class="QPushButton" name="managebutton">
      <property name="geometry">
       <rect>
        <x>50</x>
        <y>210</y>
        <width>191</width>
-       <height>101</height>
+       <height>71</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -182,11 +186,11 @@ padding: 6px;
      </property>
     </widget>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QLabel" name="controlheading">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>50</y>
+      <y>30</y>
       <width>111</width>
       <height>21</height>
      </rect>
@@ -194,6 +198,7 @@ padding: 6px;
     <property name="font">
      <font>
       <pointsize>16</pointsize>
+      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>

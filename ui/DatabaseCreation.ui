@@ -14,9 +14,7 @@
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color:rgb(86,85,85);
-
-</string>
+   <string notr="true"/>
   </property>
   <widget class="QPushButton" name="createbutton">
    <property name="geometry">
@@ -28,14 +26,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">color:rgb(86,85,85);
-background-color:rgb(154,250,230);
- border-width: 2px;
-    border-radius: 10px;
-    border-color: beige;
-    font: bold 14px;
-    min-width: 5em;
-    padding: 6px;</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string>Create</string>
@@ -51,14 +42,7 @@ background-color:rgb(154,250,230);
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">color:rgb(4,255,203);
-background-color:rgb(151,150,150);
-  border-width: 2px;
-    border-radius: 10px;
-    border-color: beige;
-    font: bold 14px;
-    min-width: 5em;
-    padding: 6px;</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string>Cancel</string>
@@ -74,10 +58,7 @@ background-color:rgb(151,150,150);
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color:white;
-    border-width: 2px;
-    border-radius: 10px;
-    border-color: beige;</string>
+    <string notr="true"/>
    </property>
    <property name="resizeMode">
     <enum>QListView::Adjust</enum>

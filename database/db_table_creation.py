@@ -270,10 +270,11 @@ def create_category_table():
 def create_client_tables():
     sql = '''
     CREATE TABLE clients (
-    client_id INTEGER NOT NULL, 
+    client_id INTEGER PRIMARY KEY NOT NULL, 
     client TEXT NOT NULL
     );
     '''
+    status_update.append(db_conn_def('create',sql=sql, table_name='clients'))
 
 
 def create_all_tables():

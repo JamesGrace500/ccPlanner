@@ -5,6 +5,9 @@ from PyQt5.QtWidgets import QDialog
 # function imports
 from database.db_table_creation import create_all_tables
 
+# style sheet imports
+from ui_stylesheets import Styles
+
 
 class CreateDatabaseWindow(QDialog):
 
@@ -12,11 +15,17 @@ class CreateDatabaseWindow(QDialog):
         super(CreateDatabaseWindow, self).__init__()
         self.pagetoshow = pagetoshow
         uic.loadUi('ui/DatabaseCreation.ui', self)
-        self.cancelbutton.clicked.connect(self.showlanding)  # button to go back to landing and cancel
+        self.cancelbutton.clicked.connect(self.goBackPage)  # button to go back to landing and cancel
         self.createbutton.clicked.connect(self.createdatabase)  # button to start database function
 
+        # apply the stylesheet references here, means that I can create one document that will impact all UIs screens
+        self.createbutton.setStyleSheet(Styles.actionbutton(self))
+        self.cancelbutton.setStyleSheet(Styles.cancelbutton(self))
+        self.processList.setStyleSheet(Styles.listview(self))
+        self.setStyleSheet(Styles.windowbackground(self))
+
     # the cancel function that will back a page
-    def showlanding(self):
+    def goBackPage(self):
         self.pagetoshow.show()
         self.destroy()
 
@@ -36,3 +45,14 @@ class CreateDatabaseWindow(QDialog):
             lst_index += 1
         self.cancelbutton.setText('Proceed')
         self.createbutton.setEnabled(False)
+        self.createbutton.setStyleSheet(
+            '''
+            color:rgb(86,85,85);                                        
+            background-color:gray;
+            border-width: 2px;
+            border-radius: 10px;
+            border-color: beige;
+            font: bold 14px;
+            min-width: 5em;
+            padding: 6px;
+            ''')
